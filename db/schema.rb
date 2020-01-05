@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_235236) do
     t.string "name"
     t.integer "height"
     t.integer "weight"
-    t.string "flavor_text_entries"
+    t.string "flavor_text"
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
