@@ -6,12 +6,17 @@
 2. [Create your local Postgres user](http://postgresguide.com/setup/users.html) and/or replace the user credentials in `/config/database.yml`.
 3. `$ git clone` this repo!
 4. Run `$ bundle install` while in the project directory.
-5. Execute `$ rails db:migrate` to create the project database and model tables.
-6. Enter `$ rails db:seed` to seed the database.
-7. Do `$ rails server` to start a local server.
-8. Visit `http://localhost:3001/api/v1/pokemon` to confirm that the Rails API is serving up the desired data.
+5. [Create the databases specified](http://postgresguide.com/setup/users.html) in `/config/database.yml`.
+6. Execute `$ rails db:migrate` to create model tables in the project database.
+7. Enter `$ rails db:seed` to seed the database.
+8. Do `$ rails server` to start a local server.
+10. Visit `http://localhost:3001/api/v1/pokemon` to confirm that the Rails API is serving up the desired data.
 
 _Note: `$ rails help` will list tasks that can be run by Rake with Rails_.
+
+### Ruby Versioning
+
+If your machine's version of Ruby is different than the version specified in `Gemfile`, [install RVM if it's not installed already](https://rvm.io/rvm/install) and then run `$ rvm install 2.6.5` or whatever version is specified. Then, while in the project directory, execute `$ rvm use ruby-2.6.5`.
 
 ## Resources
 
