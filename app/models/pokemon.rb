@@ -9,4 +9,6 @@ class Pokemon < ApplicationRecord
     validates :flavor_text, presence: true, uniqueness: true
     validates :image_url, presence: true, uniqueness: true
 
+    has_many :pokemon_types
+    has_many :types, through: :pokemon_types
 end

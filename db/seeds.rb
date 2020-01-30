@@ -9,6 +9,12 @@
 pokeapi_URL = "https://pokeapi.co/api/v2/"
 poke_num = 1
 
+type_response = RestClient.get(pokeapi_URL + "type")
+type_response_hash = JSON.parse(type_response.body)
+type_response_hash["results"].each do |type|
+    Type.create(name: type["name"])
+end
+
 while poke_num <= 151 do
     pokemon_response = RestClient.get(pokeapi_URL + "pokemon/#{poke_num}")
     pokemon_response_hash = JSON.parse(pokemon_response.body)
@@ -23,11 +29,19 @@ while poke_num <= 151 do
         image_url: pokemon_response_hash["sprites"]["front_default"]
     }
 
-    existing_pokemon = Pokemon.find_by(number: pokemon_create_hash[:number])
-    if !existing_pokemon
+    new_pokemon = Pokemon.find_by(number: pokemon_create_hash[:number])
+    if !new_pokemon
         new_pokemon = Pokemon.create(pokemon_create_hash)
     else
-        existing_pokemon.update(pokemon_create_hash)
+        new_pokemon.update(pokemon_create_hash)
     end
+    
+    pokemon_response_hash["types"].each do |type|
+        type_instance = Type.find_by(name: type["type"]["name"])
+        slot = type["slot"]
+        # byebug
+        PokemonType.create(pokemon: new_pokemon, type: type_instance, slot: slot)
+    end
+
     poke_num += 1
 end
