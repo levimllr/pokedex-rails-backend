@@ -3,7 +3,11 @@ class Api::V1::PokemonController < ApplicationController
 
     def index
         @pokemon = Pokemon.all 
-        render json: @pokemon
+        render json: @pokemon,
+            include: [
+                types: {only: [:id, :name]}, 
+                pokemon_types: {only: [:slot], include: [type: {only: [:id, :name]}]}
+            ]
     end
     
     def show
