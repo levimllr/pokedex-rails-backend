@@ -26,7 +26,9 @@ while poke_num <= 151 do
         height: pokemon_response_hash["height"],
         weight: pokemon_response_hash["weight"],
         flavor_text: species_response_hash["flavor_text_entries"][1]["flavor_text"],
-        image_url: pokemon_response_hash["sprites"]["front_default"]
+        image_url: pokemon_response_hash["sprites"]["front_default"],
+        type_1: ,
+        type_2:
     }
 
     new_pokemon = Pokemon.find_by(number: pokemon_create_hash[:number])

@@ -7,6 +7,10 @@ class CreatePokemons < ActiveRecord::Migration[6.0]
       t.integer :weight
       t.string :flavor_text
       t.string :image_url
+      t.string :type_1
+      t.string :type_2
+      t.string :color
+      t.json :stats
 
       t.timestamps
     end
