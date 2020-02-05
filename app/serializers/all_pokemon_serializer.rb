@@ -4,5 +4,5 @@ class AllPokemonSerializer
   set_type :pokemon
   set_id :pokemon_id
   
-  attributes :pokemon_id, :name, :types
+  attributes :pokemon_id, :name, :types, :sprites
 end

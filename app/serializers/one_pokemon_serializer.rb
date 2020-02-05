@@ -1,7 +1,7 @@
 class OnePokemonSerializer
   include FastJsonapi::ObjectSerializer
   
-  set_type :pokemon 
+  set_type :pokemon
   set_id :pokemon_num
 
   attributes :abilities, :base_experience, :forms, :game_indices, :height, 
