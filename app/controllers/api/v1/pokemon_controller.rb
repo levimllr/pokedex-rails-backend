@@ -4,31 +4,16 @@ class Api::V1::PokemonController < ApplicationController
     def index
         @pokemon = Pokemon.all 
 
-        if params["type"]
-            if params["type"] == "all"
-                render json: @pokemon,
-                include: [
-                    types: {only: [:id, :name]}, 
-                    pokemon_types: {only: [:slot], include: [type: {only: [:id, :name]}]}
-                ]
-                return
-            else
-                @pokemon = @pokemon.select do |pokemon|
-                    pokemon.types.map{|type| type.name}.include?(params["type"])
-                end
-            end
-        end
-        
-        render json: @pokemon
+        render json: AllPokemonSerializer.new(@pokemon)
     end
     
     def show
-        render json: @pokemon
+        render json: OnePokemonSerializer.new(@pokemon)
     end
 
     private
 
     def find_pokemon
-        @pokemon = Pokemon.find(:id)
+        @pokemon = Pokemon.find_by(pokemon_id: params[:id])
     end
 end
