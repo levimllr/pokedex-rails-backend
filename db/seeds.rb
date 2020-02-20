@@ -15,6 +15,14 @@ while poke_num <= 151 do
 
     pokemon_response_hash["pokemon_id"] = pokemon_response_hash.delete("id")
 
+    species_response = RestClient.get(pokeapi_URL + "pokemon-species/#{poke_num}")
+    species_response_hash = JSON.parse(species_response.body)
+    flavor_text_hash_array = species_response_hash["flavor_text_entries"].filter do |entry|
+        entry["language"]["name"] == "en"
+    end
+    flavor_text = flavor_text_hash_array.first["flavor_text"].split("\n").join(" ")
+    pokemon_response_hash["flavor_text"] = flavor_text
+
     new_pokemon = Pokemon.create(pokemon_response_hash)
 
     poke_num += 1
