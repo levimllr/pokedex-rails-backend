@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_235236) do
     t.jsonb "stats", array: true
     t.jsonb "types", array: true
     t.integer "weight"
+    t.string "flavor_text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
